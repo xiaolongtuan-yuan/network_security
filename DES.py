@@ -182,10 +182,13 @@ def all_message_encrypt(message, key):
     for i in tmp:
         res += DES(i)
     res = bin2str(res)
-    print("结果"+ res)
+    print("结果" + str(base64.b64encode(res.encode('utf-8')), 'utf-8'))
     return res
 
 def all_message_decrypt(message, key):
+    message = base64.b64decode(message)
+    message = bytes.decode(message)  # base64解码
+
     bin_mess = deal_mess(str2bin(message))
     res = ""
     bin_key = input_key_judge(str2bin(key))
